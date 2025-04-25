@@ -58,7 +58,7 @@ const DropCanvas = ({
     >
       {droppedItems.length === 0 ? (
         <>
-          <p>Drop items here</p>
+          <p>No items, Drop items here</p>
         </>
       ) : (
         droppedItems.map((item, index) => (
