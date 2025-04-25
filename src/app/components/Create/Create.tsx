@@ -35,7 +35,7 @@ const DraggableItem = ({ item }: { item: ClothingItem }) => {
 
   return (
     <div
-      ref={dragRef}
+      ref={dragRef as Ref<HTMLDivElement>} 
       className={`bg-gray-700 p-2 rounded hover:bg-gray-600 cursor-pointer ${
         isDragging ? "opacity-30" : "opacity-100"
       }`}
@@ -61,7 +61,7 @@ const DropCanvas = ({
 
   return (
     <div
-      ref={dropRef}
+      ref={dragRef as Ref<HTMLDivElement>} 
       className="border-2 border-dashed border-gray-600 rounded h-[300px] flex flex-wrap items-center justify-center text-gray-400 p-2 gap-2"
     >
       {droppedItems.length === 0 ? (
