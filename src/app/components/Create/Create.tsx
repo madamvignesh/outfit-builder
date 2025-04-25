@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Link from "next/link";
-
+import Image from "next/image";
 
 // Sample data
 const sampleItems = [
@@ -32,7 +32,7 @@ const DraggableItem = ({ item }: { item: any }) => {
         isDragging ? "opacity-30" : "opacity-100"
       }`}
     >
-      <img src={item.image} alt={item.name} className="w-16 h-16 mx-auto" />
+      <Image src={item.image} alt={item.name} width={64} height={64} className="mx-auto" />
       <p className="text-center text-sm mt-1">{item.name}</p>
     </div>
   );
@@ -59,15 +59,16 @@ const DropCanvas = ({
       {droppedItems.length === 0 ? (
         <>
           <p>Drop items here</p>
-          
         </>
       ) : (
         droppedItems.map((item, index) => (
-          <img
+          <Image
             key={index}
             src={item.image}
             alt={item.name}
-            className="w-16 h-16 object-contain"
+            width={64}
+            height={64}
+            className="object-contain"
           />
         ))
       )}
