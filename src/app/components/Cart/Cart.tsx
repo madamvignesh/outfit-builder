@@ -1,6 +1,7 @@
 // components/Cart/Cart.tsx
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 type ClothingItem = {
   id: string;
@@ -39,7 +40,7 @@ const Cart: React.FC = () => {
               className="flex items-center justify-between bg-gray-800 p-4 rounded-lg shadow-md"
             >
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src={item.image}
                   alt={item.name}
                   className="w-16 h-16 object-contain bg-white rounded"
