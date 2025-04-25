@@ -7,7 +7,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import Link from "next/link";
 import Image from "next/image";
 
-// 👕 Clothing item type
+// 🧩 Type Definition
 type ClothingItem = {
   id: string;
   name: string;
@@ -15,7 +15,7 @@ type ClothingItem = {
   image: string;
 };
 
-// 📦 Sample items
+// 📦 Sample Items
 const sampleItems: ClothingItem[] = [
   {
     id: "1",
@@ -61,7 +61,7 @@ const sampleItems: ClothingItem[] = [
   },
 ];
 
-// 🧲 Draggable component
+// 🧲 Draggable Item Component
 const DraggableItem: React.FC<{ item: ClothingItem }> = ({ item }) => {
   const [{ isDragging }, dragRef] = useDrag(() => ({
     type: "clothing",
@@ -84,7 +84,7 @@ const DraggableItem: React.FC<{ item: ClothingItem }> = ({ item }) => {
   );
 };
 
-// 🎯 Drop area
+// 🎯 Drop Canvas Component
 const DropCanvas: React.FC<{
   droppedItems: ClothingItem[];
   onDrop: (item: ClothingItem) => void;
@@ -117,7 +117,7 @@ const DropCanvas: React.FC<{
   );
 };
 
-// 🧩 Main Section
+// 🚀 Main Component
 const CreateSection: React.FC = () => {
   const [droppedItems, setDroppedItems] = useState<ClothingItem[]>([]);
 
@@ -155,7 +155,7 @@ const CreateSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Action Buttons */}
+        {/* Footer Buttons */}
         <div className="mt-8 flex justify-between items-center">
           <Link href="/">
             <button className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded">
