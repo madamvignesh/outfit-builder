@@ -1,12 +1,20 @@
-// pages/Create.tsx
+// src/app/components/Create/Create.tsx
 import React, { useState } from "react";
 import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Link from "next/link";
 import Image from "next/image";
 
-// Sample data
-const sampleItems = [
+// ✅ Define proper type
+type ClothingItem = {
+  id: string;
+  name: string;
+  type: string;
+  image: string;
+};
+
+// 📦 Sample data
+const sampleItems: ClothingItem[] = [
   { id: "1", name: "Red Shirt", type: "shirt", image: "https://res.cloudinary.com/dybipmq9j/image/upload/e_background_removal/f_png/v1745577908/download_rtzakx.jpg" },
   { id: "2", name: "Blue Jeans", type: "pant", image: "https://res.cloudinary.com/dybipmq9j/image/upload/e_background_removal/f_png/v1745577958/images_tc4ryn.jpg" },
   { id: "3", name: "Sneakers", type: "shoes", image: "https://res.cloudinary.com/dybipmq9j/image/upload/e_background_removal/f_png/v1745578005/download_bfu0xr.png" },
@@ -15,8 +23,8 @@ const sampleItems = [
   { id: "6", name: "Baseball Cap", type: "hat", image: "https://res.cloudinary.com/dybipmq9j/image/upload/e_background_removal/f_png/v1745578193/download_4_cmztae.png" },
 ];
 
-// Draggable item
-const DraggableItem = ({ item }: { item: any }) => {
+// 🧲 Draggable item
+const DraggableItem = ({ item }: { item: ClothingItem }) => {
   const [{ isDragging }, dragRef] = useDrag(() => ({
     type: "clothing",
     item,
@@ -38,17 +46,17 @@ const DraggableItem = ({ item }: { item: any }) => {
   );
 };
 
-// Drop canvas
+// 🪄 Drop area
 const DropCanvas = ({
   droppedItems,
   onDrop,
 }: {
-  droppedItems: any[];
-  onDrop: (item: any) => void;
+  droppedItems: ClothingItem[];
+  onDrop: (item: ClothingItem) => void;
 }) => {
   const [, dropRef] = useDrop(() => ({
     accept: "clothing",
-    drop: (item: any) => onDrop(item),
+    drop: (item: ClothingItem) => onDrop(item),
   }));
 
   return (
@@ -57,9 +65,7 @@ const DropCanvas = ({
       className="border-2 border-dashed border-gray-600 rounded h-[300px] flex flex-wrap items-center justify-center text-gray-400 p-2 gap-2"
     >
       {droppedItems.length === 0 ? (
-        <>
-          <p>No items, Drop items here</p>
-        </>
+        <p>No items, Drop items here</p>
       ) : (
         droppedItems.map((item, index) => (
           <Image
@@ -76,12 +82,11 @@ const DropCanvas = ({
   );
 };
 
-// Main Page
-const CreateSection = () => {
-  const [droppedItems, setDroppedItems] = useState<any[]>([]);
+// 📄 Main Component
+const CreateSection: React.FC = () => {
+  const [droppedItems, setDroppedItems] = useState<ClothingItem[]>([]);
 
-  const handleDrop = (item: any) => {
-    // Avoid duplicate items (optional)
+  const handleDrop = (item: ClothingItem) => {
     if (!droppedItems.find((i) => i.id === item.id)) {
       setDroppedItems((prev) => [...prev, item]);
     }
@@ -115,7 +120,7 @@ const CreateSection = () => {
           </div>
         </div>
 
-        {/* Action Button */}
+        {/* Buttons */}
         <Link href="/">
           <button className="mt-6 mr-5 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded">
             Back to Home
